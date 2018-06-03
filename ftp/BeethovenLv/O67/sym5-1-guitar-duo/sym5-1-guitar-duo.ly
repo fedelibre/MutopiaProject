@@ -54,7 +54,7 @@
 }
 
 % suppress local file system path in pdf
-\pointAndClickOff
+
 
 
 % pitch limits for standard clasical guitar
