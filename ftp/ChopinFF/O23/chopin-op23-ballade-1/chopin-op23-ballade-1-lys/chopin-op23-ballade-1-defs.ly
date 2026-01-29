@@ -1046,22 +1046,23 @@ posOttavaA = {
        \override Staff.OttavaBracket.outside-staff-priority = ##f
 }
 posOttavaB = {
-  \setOttavaStyle
-  %Pierre Perol-Schneider's angled ottava contribution
-  \once \override Staff.OttavaBracket.stencil = #ly:line-spanner::print
-  \once \override Staff.OttavaBracket.bound-details =
+  %\setOttavaStyle
+  % https://wiki.lilypond.community/wiki/Modifying_the_ottava_spanner_slope
+  \override Staff.OttavaBracket.stencil = #ly:line-spanner::print
+  \override Staff.OttavaBracket.bound-details =
     #`((left . ((Y . 0)
                 (attach-dir . ,LEFT)
                 (padding . 0)
                 (stencil-align-dir-y . ,CENTER)))
-       (right . ((Y . 3)
+       (right . ((Y . 4.0) ; Change the number here
                  (padding . 0)
                  (attach-dir . ,RIGHT)
-                 (text . ,(make-draw-dashed-line-markup (cons 0 -1.2))))))
-  \once \override Staff.OttavaBracket.left-bound-info =
-     #ly:line-spanner::calc-left-bound-info-and-text
-  \once \override Staff.OttavaBracket.right-bound-info =
-     #ly:line-spanner::calc-right-bound-info
+                 (text . ,(make-draw-dashed-line-markup
+                           (cons 0 -1.2))))))
+  \override Staff.OttavaBracket.left-bound-info =
+     #ly:horizontal-line-spanner::calc-left-bound-info-and-text
+  \override Staff.OttavaBracket.right-bound-info =
+     #ly:horizontal-line-spanner::calc-right-bound-info
 }
 posOttavaC = { \alterBroken staff-padding #'( 4.5 5.7 ) Staff.OttavaBracket }
 posOttavaD = { 
